@@ -29,7 +29,7 @@
     }
 
     /* 레이아웃 */
-    .page { padding: 40px 25%; min-height: 100vh; position: relative; z-index: 1; }
+    .page { padding: 40px 25%; position: relative; z-index: 1; }
     @media (max-width: 1279px) { .page { padding: 28px 10%; } }
 
     /* 헤더 */
@@ -126,11 +126,11 @@
     .acc-images:active { cursor: grabbing; }
     .acc-images::-webkit-scrollbar { display: none; }
     .acc-image {
-      flex: 0 0 80%; aspect-ratio: 8/7; scroll-snap-align: start;
-      background: var(--red-dim); display: flex; align-items: center; justify-content: center;
+      flex: 0 0 auto; scroll-snap-align: start;
+      background: var(--bg); display: flex; align-items: flex-start; justify-content: flex-start;
       overflow: hidden;
     }
-    .acc-image img  { width: 100%; height: 100%; object-fit: cover; }
+    .acc-image img  { width: auto; height: auto; max-height: 700px; max-width: 550px; object-fit: contain; display: block; }
     .acc-image span { font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--red); opacity: 0.5; }
   </style>
 </head>
@@ -154,8 +154,8 @@ const SUBTITLE = "Design and Illustration.";
 
 // ✏️ 프로필 정보 (첫 번째 음표를 클릭하면 나타납니다)
 const PROFILE = {
-  name:  "NAMYOUNG / WCS",   // ✏️ 프로필 카드에 표시할 이름
-  role:  " Graphic Designer / Illustrator",        // ✏️ 직함
+  name:  "NAMYOUNG",   // ✏️ 프로필 카드에 표시할 이름
+  role:  "WCS - Graphic Designer / Illustrator",        // ✏️ 직함
   bio:   "서울을 기반으로 활동하는 그래픽 디자이너.<br>일러스트를 그래픽에 활용하는 것과 판화에 많은 관심이 있다.<br>최근에는 한글레터링에도 관심이 생겨 공부 중이다.",  // ✏️ 자기소개
   email: "wcs.10.111@gmail.com",  // ✏️ 이메일
   socials: [                // ✏️ SNS 링크 목록 (label: 이름, href: 주소)
@@ -167,103 +167,73 @@ const PROFILE = {
 
 // ✏️ 프로젝트 목록 (음표 50개에 순서대로 연결됩니다)
 //
-// images 사용법:
-//   이미지 있을 때 → images: ["사진1.jpg", "사진2.jpg"]
-//   이미지 없을 때 → images: []  (빈 배열로 두면 자동으로 플레이스홀더 표시)
-//   이미지 파일은 index.html과 같은 ny-portfolio 폴더에 넣어주세요.
+// 각 항목 작성법:
+//   title  → 프로젝트 제목
+//   sub    → 서브 카테고리 (예: "Graphic Design", "Illustration")
+//   desc   → 설명 문구
+//   images → 이미지 파일명 배열 (예: ["img1.jpg", "img2.jpg"])
+//            없으면 [] 로 두면 플레이스홀더 자동 표시
+//            이미지 파일은 index.html과 같은 폴더에 넣어주세요
 const PROJECTS = [
 
-  // ✏️ 실제 프로젝트를 아래에 입력하세요 (01–06)
-  {
-    title:  "Preparing...",              // ✏️ 프로젝트 제목
-    sub:    "Preparing for update",// ✏️ 서브 카테고리
-    desc:   "준비중이에요...♡",  // ✏️ 설명
+  // ── Row 1 ── (음표 02–12)
+  /* 01 */ { title: "방아쇠 수지", sub: "Hangul lettering", desc: "방아쇠 수지로 인해 고통 받아 만든 작업. 방아쇠에 집중하여 표현.", images: ["1-01.png"] },
+  /* 02 */ { title: "휴식", sub: "Hangul lettering", desc: "휴식이라는 단어에 늘어붙어 자꾸만 해야할 것을 미루게 되는 마음을 글자로 표현.", images: ["3-01.png"] },
+  /* 03 */ { title: "리뎀션", sub: "Hangul lettering", desc: "한글타이포그라피학교 레터링 기초 수업에서 작업한 레터링. 서부개척시대 서체의 특징을 최지혁체 기반 한글 레터링으로 풀어낸 시도.", images: ["2-01.png"] },
+  /* 04 */ { title: "연합 공연 포스터", sub: "Poster Design", desc: "밴드 벼락이 주최한 여성 밴드들의 연합 공연을 위한 포스터 작업. 단체로 벼락을 맞아 난리법석이 된 모습.", images: ["2.jpeg"] },
+  /* 05 */ { title: "루브르 가이드", sub: "Mini Zine", desc: "루브르에서 필수로 보면 좋은 것들을 모아 설명한 미니 zine.", images: ["R2.png","R1.png"] },
+  /* 06 */ { title: "오르세 가이드", sub: "Mini Zine", desc: "오르세에서 필수로 보면 좋은 것들을 모아 설명한 미니 zine.", images: ["O1.png","O2.png"] },
+  /* 07 */ { title: "기타 시리즈", sub: "Graphic Design", desc: "다양한 방식으로 표현한 기타 그래픽.", images: ["2-2.jpeg","2-3.jpeg","2-4.jpeg","2-5.jpeg","2-6.jpeg","2-7.jpeg","2-8.jpeg"] },
+  /* 08 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
+  /* 09 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
+  /* 10 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
+  /* 11 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
+  /* 12 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
 
-    images: [],                              // ✏️ 이미지 파일명 배열
-  },
-  {
-    title:  "Preparing...",
-    sub:    "Preparing for update",
-    desc:   "준비중이에요...♡",
+  // ── Row 2 ── (음표 13–24)
+  /* 13 */ { title: "센시", sub: "Illustration", desc: "던전밥을 보고 센시같은 요리사와 함께 모험을 떠나고 싶어서 그린 그림. 동화책의 삽화처럼 보이도록 함.", images: ["3-1.jpg"] },
+  /* 14 */ { title: "삼일 수영장", sub: "Illustration", desc: "내가 다니는 수영장의 모습. 바나나 모양의 주의 표지판이 귀여워서 그림.", images: ["3-2.jpg"] },
+  /* 15 */ { title: "작은 공항에서 본 비행기", sub: "Illustration", desc: "비행기 뒤로 넘어오는 태양 빛의 아름다움.", images: ["3-3.png"] },
+  /* 16 */ { title: "자본주의 개미", sub: "Illustration", desc: "돈을 쓸어모으는 것 같지만 몇 푼 되지 않는다.", images: ["3-4.png"] },
+  /* 17 */ { title: "그그그", sub: "Illustration", desc: "'그'라는 글자를 집중 효과 그래픽처럼 보이도록 그림.", images: ["3-5.jpeg"] },
+  /* 18 */ { title: "빛을 향하여", sub: "Illustration", desc: "어딘가를 향하는 분홍색 소녀.", images: ["3-6.jpeg"] },
+  /* 19 */ { title: "떠받들었지, 더이상은...", sub: "Illustration", desc: "누군가에게 밟혀 올라가지 못했던 소녀들.", images: ["3-7.jpeg"] },
+  /* 20 */ { title: "Soulless", sub: "Illustration", desc: "영혼 없지만 활기차고 싶은 누군가.", images: ["3-8.jpg"] },
+  /* 21 */ { title: "LP 냠", sub: "Illustration", desc: "...", images: ["3-9.png"] },
+  /* 22 */ { title: "santa", sub: "Illustration", desc: "내가 원하는 산타.", images: ["3-10.png"] },
+  /* 23 */ { title: "X-mas", sub: "Illustration", desc: "크리스마스의 따뜻함.", images: ["3-11.png"] },
+  /* 24 */ { title: "친구의 아보카도", sub: "Illustration", desc: "친구의 아보카도가 잘 자라는 것을 기념한 그림.", images: ["3-13.png"] },
+ 
+  // ── Row 3 ── (음표 25–37)
+  /* 25 */ { title: "잘린 머리", sub: "Illustration", desc: "...", images: ["3-12.png"] },
+  /* 26 */ { title: "초식 뱀", sub: "Illustration", desc: "뱀 풀 뜯어 먹는 소리.", images: ["3-18.png"] },
+  /* 27 */ { title: "untitled", sub: "Illustration", desc: "...", images: ["3-14.png"] },
+  /* 28 */ { title: "귀여운 동물들", sub: "Illustration", desc: "동물 스티커가 가지고 싶어서 그린 그림. 실제 제작되지는 않았다.", images: ["3-15.png"] },
+  /* 29 */ { title: "아이스크림", sub: "Illustration", desc: "죽기 전에 먹고 싶은 음식은 아이스크림.", images: ["3-16.png"] },
+  /* 30 */ { title: "BUG MAN", sub: "Illustration", desc: "밴드 블러의 배드맨 노래를 듣고 그린 팬아트.", images: ["3-17.png"] },
+  /* 31 */ { title: "고양이 최고야", sub: "Illustration", desc: "다양한 고양이 모습을 그림.", images: ["3-19.png"] },
+  /* 32 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
+  /* 33 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
+  /* 34 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
+  /* 35 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
+  /* 36 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
+  /* 37 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
 
-    images: [], 
-  },
-  {
-    title:  "Preparing...",
-    sub:    "Preparing for update",
-    desc:   "준비중이에요...♡",
+  // ── Row 4 ── (음표 38–50)
+  /* 38 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
+  /* 39 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
+  /* 40 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
+  /* 41 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
+  /* 42 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
+  /* 43 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
+  /* 44 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
+  /* 45 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
+  /* 46 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
+  /* 47 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
+  /* 48 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
+  /* 49 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
+  /* 50 */ { title: "Preparing...", sub: "Preparing for update", desc: "준비중...", images: [] },
 
-    images: [], 
-  },
-  {
-    title:  "Preparing...",
-    sub:    "Preparing for update",
-    desc:   "준비중이에요...♡",
-
-    images: [], 
-  },
-  {
-    title:  "Preparing...",
-    sub:    "Preparing for update",
-    desc:   "준비중이에요...♡",
-
-    images: [], 
-  },
-  {
-    title:  "Preparing...",
-    sub:    "Preparing for update",
-    desc:   "준비중이에요...♡",
-
-    images: [], 
-  },
-
-  // ✏️ 계속 추가하세요 (07–24) — 제목, 설명, 태그를 입력하세요
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-
-  // ✏️ 25–50번 슬롯: 제목과 설명을 입력하세요
-    { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
-  { title: "Preparing...", sub: "Preparing for update", desc: "준비중이에요...♡", images: [] },
 ];
 
 /* ════════════════════════════════════════════════════════
@@ -370,7 +340,7 @@ function profileBodyHTML(p) {
 function projectBodyHTML(p) {
   const imgs = p.images && p.images.length
     ? p.images.map(src => `<div class="acc-image"><img src="${src}" alt="${p.title}"></div>`).join('')
-    : Array.from({length: 5}, (_, i) => `<div class="acc-image"><span>Image ${i + 1}</span></div>`).join('');
+    : `<div class="acc-image"><span>Preparing...</span></div>`;
   return `<p class="acc-title">${p.title}</p>
     <p class="acc-sub">${p.sub}</p>
     <p class="acc-desc">${p.desc}</p>
@@ -435,13 +405,14 @@ function buildScore() {
   computeBreakpoints();
   score.innerHTML = '';
   score.appendChild(buildRow(MELODY_ROWS[0], [[7,8],[10,11]], [3,6,9]));
-  score.appendChild(buildRow(MELODY_ROWS[1], [[7,8]],         [3,6,9]));
+  score.appendChild(buildRow(MELODY_ROWS[1], [[7,8]],         [3,6,9], 'Illust.'));
   score.appendChild(buildRow(MELODY_ROWS[2], [],              [3,6,9], 'Illust.'));
-  score.appendChild(buildRow(MELODY_ROWS[3], [],              [3,6,9], 'Illust.'));
+  score.appendChild(buildRow(MELODY_ROWS[3], [],              [3,6,9], 'Design.'));
 
   // 마지막 빈 오선보
   const empty = document.createElement('div');
   empty.className = 'staff-row';
+  empty.style.marginBottom = '5px';
   empty.innerHTML = `<div class="staff-outer"><div class="staff-lines">${SL5}</div></div>`;
   score.appendChild(empty);
 }
@@ -450,17 +421,16 @@ buildScore();
 window.matchMedia('(min-width: 1280px)').addEventListener('change', buildScore);
 window.matchMedia('(max-width: 768px)').addEventListener('change', buildScore);
 
-// 음표 소리 재생 (Web Audio API — 피아노 + 3도 화음)
+// 음표 소리 재생 (Web Audio API — 마림바 + 3도·8도 화음)
 const NOTE_FREQ  = { 54: 392.00, 60: 349.23, 64: 329.63, 69: 293.66, 74: 261.63 }; // 솔·파·미·레·도
 const THIRD_FREQ = { 54: 493.88, 60: 440.00, 64: 392.00, 69: 349.23, 74: 329.63 }; // 시·라·솔·파·미
 let audioCtx = null;
 
-function synthPiano(freq, volume, now, master) {
+function synthMarimba(freq, volume, now, master) {
+  // 마림바: 기음(sine) + 4배음 강조, 빠른 감쇠
   const harmonics = [
-    { ratio: 1,   gain: 0.5  },
-    { ratio: 2,   gain: 0.18 },
-    { ratio: 3,   gain: 0.08 },
-    { ratio: 4,   gain: 0.03 },
+    { ratio: 1,   gain: 0.7  },
+    { ratio: 4,   gain: 0.15 },
   ];
   harmonics.forEach(({ ratio, gain: gVal }) => {
     const osc  = audioCtx.createOscillator();
@@ -468,14 +438,27 @@ function synthPiano(freq, volume, now, master) {
     osc.type = 'sine';
     osc.frequency.value = freq * ratio;
     gain.gain.setValueAtTime(0, now);
-    gain.gain.linearRampToValueAtTime(gVal * volume, now + 0.005);
-    gain.gain.exponentialRampToValueAtTime(gVal * volume * 0.3, now + 0.08);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.6);
+    gain.gain.linearRampToValueAtTime(gVal * volume, now + 0.002);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.5);
     osc.connect(gain);
     gain.connect(master);
     osc.start(now);
-    osc.stop(now + 1.6);
+    osc.stop(now + 0.5);
   });
+}
+
+function synthSine(freq, volume, now, master) {
+  const osc  = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.type = 'sine';
+  osc.frequency.value = freq;
+  gain.gain.setValueAtTime(0, now);
+  gain.gain.linearRampToValueAtTime(volume, now + 0.002);
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.5);
+  osc.connect(gain);
+  gain.connect(master);
+  osc.start(now);
+  osc.stop(now + 0.5);
 }
 
 function playNote(topPx) {
@@ -487,9 +470,9 @@ function playNote(topPx) {
   const master = audioCtx.createGain();
   master.gain.value = 0.9;
   master.connect(audioCtx.destination);
-  synthPiano(freq,          1.0, now, master); // 기음
-  synthPiano(thirdFreq,     0.3, now, master); // 3도 화음 (30%)
-  synthPiano(freq * 2,      0.3, now, master); // 8도 화음 (30%)
+  synthMarimba(freq,          1.0, now, master); // 기음 (마림바)
+  synthSine(thirdFreq,        0.3, now, master); // 3도 화음 (사인)
+  synthSine(freq * 2,         0.3, now, master); // 8도 화음 (사인)
 }
 
 // 아코디언 클릭
@@ -504,33 +487,23 @@ score.addEventListener('click', e => {
   if (!isOpen) {
     acc.classList.add('is-open');
     note.classList.add('is-active');
-    setTimeout(() => acc.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80);
   }
-  playNote(parseInt(note.dataset.top, 10));
+  if (!isOpen) playNote(parseInt(note.dataset.top, 10));
   note.classList.add('popping');
   note.addEventListener('animationend', () => note.classList.remove('popping'), { once: true });
 });
 
-// 이미지 드래그 스크롤
-document.addEventListener('pointerdown', e => {
+// 이미지 클릭/터치 네비게이션 (좌측 → 이전, 우측 → 다음)
+document.addEventListener('click', e => {
   const strip = e.target.closest('.acc-images');
   if (!strip) return;
-  strip.setPointerCapture(e.pointerId);
-  strip.style.scrollSnapType = 'none';
-  const anchor = e.clientX + strip.scrollLeft;
-  const onMove = e => { strip.scrollLeft = anchor - e.clientX; };
-  const onUp = () => {
-    strip.removeEventListener('pointermove', onMove);
-    const img = strip.querySelector('.acc-image');
-    if (img) {
-      const step = img.offsetWidth + 12;
-      strip.style.scrollSnapType = '';
-      strip.scrollTo({ left: Math.round(strip.scrollLeft / step) * step, behavior: 'smooth' });
-    }
-  };
-  strip.addEventListener('pointermove',   onMove);
-  strip.addEventListener('pointerup',     onUp, { once: true });
-  strip.addEventListener('pointercancel', onUp, { once: true });
+  const img = strip.querySelector('.acc-image');
+  if (!img) return;
+  const step = img.offsetWidth + 12;
+  const index = Math.round(strip.scrollLeft / step);
+  const clickedLeft = e.clientX < strip.getBoundingClientRect().left + strip.offsetWidth / 2;
+  const target = (clickedLeft ? index - 1 : index + 1) * step;
+  strip.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
 });
 </script>
 </body>
