@@ -485,7 +485,7 @@ function playNote(topPx) {
   if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   const now    = audioCtx.currentTime;
   const master = audioCtx.createGain();
-  master.gain.value = 0.7;
+  master.gain.value = 0.9;
   master.connect(audioCtx.destination);
   synthPiano(freq,          1.0, now, master); // 기음
   synthPiano(thirdFreq,     0.3, now, master); // 3도 화음 (30%)
