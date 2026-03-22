@@ -505,6 +505,10 @@ document.addEventListener('click', e => {
   const target = (clickedLeft ? index - 1 : index + 1) * step;
   strip.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
 });
+
+document.addEventListener('contextmenu', e => {
+  if (e.target.tagName === 'IMG') e.preventDefault();
+});
 </script>
 </body>
 </html>
