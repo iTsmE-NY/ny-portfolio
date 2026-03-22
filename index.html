@@ -9,8 +9,8 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg: #F4F3F2; --ink: #121212; --red: #db570f;
-      --red-dim: rgba(219,87,15,0.28); --brown: #6B4020;
+      --bg: #1A1A1A; --ink: #22d697; --red: #bac2bf;
+      --red-dim: rgba(186,194,191,0.28); --brown: #22d697;
       --line-gap: 10px; --pad: 28px; --staff-h: 42px; --wrap-h: 102px;
     }
     @media (max-width: 768px) {
@@ -103,19 +103,19 @@
     /* 프로필 카드 */
     .profile-name { font-size: 36px; font-weight: 800; line-height: 1; letter-spacing: -0.5px; margin-bottom: 6px; }
     .profile-role { font-size: 9.5px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: var(--red); margin-bottom: 14px; }
-    .profile-bio  { font-size: 13px; line-height: 1.72; margin-bottom: 14px; }
+    .profile-bio  { font-size: 13px; line-height: 1.72; margin-bottom: 14px; color: #bac2bf; }
     .profile-links {
       display: flex; flex-wrap: wrap; gap: 4px 2px;
       font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 22px;
     }
-    .profile-links a { color: var(--red); text-decoration: none; border-bottom: 1px solid var(--red-dim); padding-bottom: 1px; transition: opacity 0.15s; }
+    .profile-links a { color: #29f0aa; text-decoration: none; border-bottom: 1px solid rgba(41,240,170,0.5); padding-bottom: 1px; transition: opacity 0.15s; }
     .profile-links a:hover { opacity: 0.65; }
     .profile-links .sep { color: var(--brown); opacity: 0.45; padding: 0 6px; }
 
     /* 프로젝트 카드 */
     .acc-title { font-size: 17px; font-weight: 700; letter-spacing: -0.2px; margin-bottom: 4px; }
-    .acc-sub   { font-size: 12px; font-style: italic; color: var(--brown); margin-bottom: 12px; }
-    .acc-desc  { font-size: 13px; line-height: 1.74; margin-bottom: 14px; }
+    .acc-sub   { font-size: 12px; font-style: italic; color: #bac2bf; margin-bottom: 12px; }
+    .acc-desc  { font-size: 13px; line-height: 1.74; margin-bottom: 14px; color: #bac2bf; }
 
     /* 가로 스크롤 이미지 */
     .acc-images {
@@ -280,7 +280,7 @@ document.getElementById('js-name').textContent = NAME;
 document.getElementById('js-sub').textContent  = SUBTITLE;
 
 // 악보 구조
-// 음 높이 (top px) — 도:74, 레:69, 미:64, 파:59, 솔:54  /  ledger:true = 덧줄(도)
+// 음 높이 (top px) — 도:74, 레:69, 미:64, 파:60, 솔:54  /  ledger:true = 덧줄(도)
 // 음표 종류 — q: 4분음표 / dq: 점4분 / e: 8분단독 / eb: 8분묶음
 const MELODY_ROWS = [
   /* Row 1: 미레도레 미미미점 레레레점 미미미 */
@@ -319,13 +319,13 @@ const MELODY_ROWS = [
     { top:54, type:'q', ledger:false, content:PROJECTS[24] },
     { top:64, type:'q', ledger:false, content:PROJECTS[25] },
     { top:64, type:'q', ledger:false, content:PROJECTS[26] },
-    { top:59, type:'q', ledger:false, content:PROJECTS[27] },
+    { top:60, type:'q', ledger:false, content:PROJECTS[27] },
     { top:69, type:'q', ledger:false, content:PROJECTS[28] },
     { top:69, type:'q', ledger:false, content:PROJECTS[29] },
     { top:74, type:'q', ledger:true,  content:PROJECTS[30] },
     { top:69, type:'q', ledger:false, content:PROJECTS[31] },
     { top:64, type:'q', ledger:false, content:PROJECTS[32] },
-    { top:59, type:'q', ledger:false, content:PROJECTS[33] },
+    { top:60, type:'q', ledger:false, content:PROJECTS[33] },
     { top:54, type:'q', ledger:false, content:PROJECTS[34] },
     { top:54, type:'q', ledger:false, content:PROJECTS[35] },
     { top:54, type:'q', ledger:false, content:PROJECTS[36] },
@@ -335,7 +335,7 @@ const MELODY_ROWS = [
     { top:54, type:'q', ledger:false, content:PROJECTS[37] },
     { top:64, type:'q', ledger:false, content:PROJECTS[38] },
     { top:64, type:'q', ledger:false, content:PROJECTS[39] },
-    { top:59, type:'q', ledger:false, content:PROJECTS[40] },
+    { top:60, type:'q', ledger:false, content:PROJECTS[40] },
     { top:69, type:'q', ledger:false, content:PROJECTS[41] },
     { top:69, type:'q', ledger:false, content:PROJECTS[42] },
     { top:74, type:'q', ledger:true,  content:PROJECTS[43] },
@@ -351,8 +351,8 @@ const MELODY_ROWS = [
 // SVG 음표 (8×8 사각형 머리, 기둥 위로)
 function noteSVG(type, hasLedger) {
   const stem   = `<line x1="8" y1="-5" x2="8" y2="-35" stroke="currentColor" stroke-width="1.5" fill="none"/>`;
-  const ledger = hasLedger ? `<line x1="-5" y1="4" x2="16" y2="4" stroke="currentColor" stroke-width="1.5" fill="none"/>` : '';
-  const extra  = type === 'dq' ? `<circle cx="13" cy="4" r="1.5" fill="currentColor"/>`
+  const ledger = hasLedger ? `<line x1="-4.4" y1="4" x2="12.4" y2="4" stroke="currentColor" stroke-width="1.5" fill="none"/>` : '';
+  const extra  = type === 'dq' ? `<rect x="11.5" y="2.5" width="3" height="3" fill="currentColor"/>`
                : type === 'e'  ? `<polyline points="8,-35 18,-35 18,-15" stroke="currentColor" stroke-width="1.5" fill="none"/>` : '';
   return `<svg width="8" height="8" viewBox="0 0 8 8" style="overflow:visible;position:absolute;top:0;left:0;display:block" fill="currentColor"><rect width="8" height="8"/>${stem}${extra}${ledger}</svg>`;
 }
@@ -400,7 +400,7 @@ function buildRow(rowNotes, beamPairs, barlines, label) {
     const top  = rTop(note.top) + 'px';
     const { id } = note.content;
     const lbl    = note.content.name || note.content.title;
-    notesHTML += `<div class="note" data-id="${id}" data-label="${lbl}" style="left:${left};top:${top}">${noteSVG(note.type, note.ledger)}</div>`;
+    notesHTML += `<div class="note" data-id="${id}" data-label="${lbl}" data-top="${note.top}" style="left:${left};top:${top}">${noteSVG(note.type, note.ledger)}</div>`;
     const body    = id === 'profile' ? profileBodyHTML(note.content) : projectBodyHTML(note.content);
     accsHTML     += `<div class="accordion" id="acc-${id}"><div class="accordion-inner"><div class="accordion-body">${body}</div></div></div>`;
   });
@@ -450,6 +450,48 @@ buildScore();
 window.matchMedia('(min-width: 1280px)').addEventListener('change', buildScore);
 window.matchMedia('(max-width: 768px)').addEventListener('change', buildScore);
 
+// 음표 소리 재생 (Web Audio API — 피아노 + 3도 화음)
+const NOTE_FREQ  = { 54: 392.00, 60: 349.23, 64: 329.63, 69: 293.66, 74: 261.63 }; // 솔·파·미·레·도
+const THIRD_FREQ = { 54: 493.88, 60: 440.00, 64: 392.00, 69: 349.23, 74: 329.63 }; // 시·라·솔·파·미
+let audioCtx = null;
+
+function synthPiano(freq, volume, now, master) {
+  const harmonics = [
+    { ratio: 1,   gain: 0.5  },
+    { ratio: 2,   gain: 0.18 },
+    { ratio: 3,   gain: 0.08 },
+    { ratio: 4,   gain: 0.03 },
+  ];
+  harmonics.forEach(({ ratio, gain: gVal }) => {
+    const osc  = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = freq * ratio;
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(gVal * volume, now + 0.005);
+    gain.gain.exponentialRampToValueAtTime(gVal * volume * 0.3, now + 0.08);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.6);
+    osc.connect(gain);
+    gain.connect(master);
+    osc.start(now);
+    osc.stop(now + 1.6);
+  });
+}
+
+function playNote(topPx) {
+  const freq      = NOTE_FREQ[topPx];
+  const thirdFreq = THIRD_FREQ[topPx];
+  if (!freq) return;
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const now    = audioCtx.currentTime;
+  const master = audioCtx.createGain();
+  master.gain.value = 0.4;
+  master.connect(audioCtx.destination);
+  synthPiano(freq,          1.0, now, master); // 기음
+  synthPiano(thirdFreq,     0.3, now, master); // 3도 화음 (30%)
+  synthPiano(freq * 2,      0.3, now, master); // 8도 화음 (30%)
+}
+
 // 아코디언 클릭
 score.addEventListener('click', e => {
   const note = e.target.closest('.note[data-id]');
@@ -464,6 +506,7 @@ score.addEventListener('click', e => {
     note.classList.add('is-active');
     setTimeout(() => acc.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80);
   }
+  playNote(parseInt(note.dataset.top, 10));
   note.classList.add('popping');
   note.addEventListener('animationend', () => note.classList.remove('popping'), { once: true });
 });
