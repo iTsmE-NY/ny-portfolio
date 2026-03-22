@@ -382,7 +382,7 @@ let _mobile, LEFT_PCT, RIGHT_PCT;
 function computeBreakpoints() {
   _mobile   = window.matchMedia('(max-width: 768px)').matches;
   LEFT_PCT  = window.matchMedia('(min-width: 1280px)').matches ? 25 : _mobile ? 5 : 10;
-  RIGHT_PCT = window.matchMedia('(min-width: 1280px)').matches ? 75 : _mobile ? 95 : 90;
+  RIGHT_PCT = window.matchMedia('(min-width: 1280px)').matches ? 75 : _mobile ? 90 : 90;
 }
 function rTop(t) { return _mobile ? Math.round(-1.2 + t * 0.8) : t; }
 function noteLeftPct(i, n) {
