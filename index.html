@@ -9,8 +9,8 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg: #1A1A1A; --ink: #22d697; --red: #bac2bf;
-      --red-dim: rgba(186,194,191,0.28); --brown: #22d697;
+      --bg: #1A1A1A; --mint: #22d697; --gray: #bac2bf;
+      --gray-dim: rgba(186,194,191,0.28); --mint-bright: #29f0aa; --yellow: #f5e216;
       --line-gap: 10px; --pad: 28px; --staff-h: 42px; --wrap-h: 102px;
     }
     @media (max-width: 768px) {
@@ -18,7 +18,7 @@
     }
 
     body {
-      background: var(--bg); color: var(--ink);
+      background: var(--bg); color: var(--mint);
       font-family: 'Pretendard', -apple-system, sans-serif;
       overflow-x: hidden;
     }
@@ -54,10 +54,10 @@
     .click-hint {
       position: absolute; top: -5px; font-size: 9px; font-weight: 600;
       letter-spacing: 2px; text-transform: uppercase;
-      color: var(--brown); opacity: 0.55; white-space: nowrap; pointer-events: none;
+      color: var(--mint); opacity: 0.55; white-space: nowrap; pointer-events: none;
     }
     .staff-lines { position: absolute; left: 0; right: 0; top: var(--pad); pointer-events: none; }
-    .sl { position: absolute; left: 0; right: 0; height: 1.5px; background: var(--red); opacity: 0.58; }
+    .sl { position: absolute; left: 0; right: 0; height: 1.5px; background: var(--gray); opacity: 0.58; }
     .sl:nth-child(1) { top: 0; }
     .sl:nth-child(2) { top: calc(var(--line-gap) * 1); }
     .sl:nth-child(3) { top: calc(var(--line-gap) * 2); }
@@ -65,22 +65,23 @@
     .sl:nth-child(5) { top: calc(var(--line-gap) * 4); }
     .barline {
       position: absolute; top: var(--pad); height: var(--staff-h);
-      width: 1px; background: var(--ink); opacity: 0.3; pointer-events: none;
+      width: 1px; background: var(--mint); opacity: 0.3; pointer-events: none;
     }
-    .beam { position: absolute; height: 3px; background: var(--ink); pointer-events: none; z-index: 5; }
+    .beam { position: absolute; height: 3px; background: var(--mint); pointer-events: none; z-index: 5; }
 
     /* 음표 */
     .note {
       position: absolute; width: 8px; height: 8px;
       overflow: visible; cursor: pointer; z-index: 10;
-      color: var(--ink); transition: color 0.15s;
+      color: var(--mint); transition: color 0.15s;
     }
-    .note:hover, .note.is-active { color: var(--red); }
+    .note:hover, .note.is-active { color: var(--gray); }
+    .note[data-id="profile"] { color: var(--yellow); }
     .note::before {
       content: attr(data-label);
       position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
       font-size: 9px; font-weight: 600; letter-spacing: 1px;
-      color: var(--bg); background: var(--ink);
+      color: var(--bg); background: var(--mint);
       padding: 4px 10px; white-space: nowrap; pointer-events: none;
       opacity: 0; transition: opacity 0.15s; z-index: 20;
     }
@@ -102,20 +103,20 @@
 
     /* 프로필 카드 */
     .profile-name { font-size: 36px; font-weight: 800; line-height: 1; letter-spacing: -0.5px; margin-bottom: 6px; }
-    .profile-role { font-size: 9.5px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: var(--red); margin-bottom: 14px; }
-    .profile-bio  { font-size: 13px; line-height: 1.72; margin-bottom: 14px; color: #bac2bf; }
+    .profile-role { font-size: 9.5px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: var(--gray); margin-bottom: 14px; }
+    .profile-bio  { font-size: 13px; line-height: 1.72; margin-bottom: 14px; color: var(--gray); }
     .profile-links {
       display: flex; flex-wrap: wrap; gap: 4px 2px;
       font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 22px;
     }
-    .profile-links a { color: #29f0aa; text-decoration: none; border-bottom: 1px solid rgba(41,240,170,0.5); padding-bottom: 1px; transition: opacity 0.15s; }
+    .profile-links a { color: var(--mint-bright); text-decoration: none; border-bottom: 1px solid rgba(41,240,170,0.5); padding-bottom: 1px; transition: opacity 0.15s; }
     .profile-links a:hover { opacity: 0.65; }
-    .profile-links .sep { color: var(--brown); opacity: 0.45; padding: 0 6px; }
+    .profile-links .sep { color: var(--mint); opacity: 0.45; padding: 0 6px; }
 
     /* 프로젝트 카드 */
     .acc-title { font-size: 17px; font-weight: 700; letter-spacing: -0.2px; margin-bottom: 4px; }
-    .acc-sub   { font-size: 12px; font-style: italic; color: #bac2bf; margin-bottom: 12px; }
-    .acc-desc  { font-size: 13px; line-height: 1.74; margin-bottom: 14px; color: #bac2bf; }
+    .acc-sub   { font-size: 12px; font-style: italic; color: var(--gray); margin-bottom: 12px; }
+    .acc-desc  { font-size: 13px; line-height: 1.74; margin-bottom: 14px; color: var(--gray); }
 
     /* 가로 스크롤 이미지 */
     .acc-images {
@@ -131,7 +132,7 @@
       overflow: hidden;
     }
     .acc-image img  { width: auto; height: auto; max-height: 700px; max-width: 550px; object-fit: contain; display: block; }
-    .acc-image span { font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--red); opacity: 0.5; }
+    .acc-image span { font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gray); opacity: 0.5; }
   </style>
 </head>
 <body>
